@@ -1,0 +1,3 @@
+ConfigurationElement/ConfigurationElement_testFindElement.
+  testFindFromRoot/0  # GetParam() = (0x5f9060de0fed pointing to "root = {}", 0x5f9060de0feb pointing to "$", 0x5f9060de0fe6 pointing to "root")
+  testFindFromRoot/1  # GetParam() = (0x5f9060de0f52 pointing to "root = { foo = true }", 0x5f9060de0fe0 pointing to "$.foo", 0x5f9060de0cce pointing to "foo")
