@@ -1,6 +1,7 @@
 import os
 import subprocess
 import sys
+import re
 
 class MemoryErrorsAnalyser:
     def __init__(self, test_exe, test_filename):
@@ -8,6 +9,7 @@ class MemoryErrorsAnalyser:
         prefix = ""
         self.tests = []
         self.commands = []
+        notFirstTestPattern = re.compile(r"/\d+")
         with open(test_filename) as f:
             lines = f.readlines()
             for line in lines:
@@ -16,7 +18,7 @@ class MemoryErrorsAnalyser:
                     line = line[:comment_pos].strip()
                 if line.endswith('.\n'):
                     prefix = line[:-1].strip('\n')
-                elif line.endswith('/0') or line[-2] != '/':
+                elif line.endswith('/0') or re.search(notFirstTestPattern, line) is None:
                     name = prefix + line.strip()
                     self.tests.append(name)
 
